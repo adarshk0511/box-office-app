@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-const SearchForm = (onSearch) => {
+
+const SearchForm = ({onSearch}) => {
     const [searchStr, setSearchStr] = useState('');
     const [searchOption, setSearchOption] = useState('shows');
 
@@ -19,11 +20,11 @@ const SearchForm = (onSearch) => {
             q : searchStr,
             searchOption
         }
-        onSearch(options);
+    onSearch(options);
     }
     
     return (
-        <><form onSubmit={onSearch}>
+        <><form onSubmit={onSubmit}>
             <input type="text" value={searchStr} onChange={onSearchInputChange} />
             <label>
                 Shows
