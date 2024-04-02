@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { searchForShows, searchForPeople } from '../api/tvmaze';
 import SearchForm from '../components/SearchForm';
@@ -6,26 +7,18 @@ import ShowGrid from '../components/shows/ShowGrid';
 import ActorsGrid from '../components/actors/ActorsGrid';
 
 const Home = () => {
-  const [apiData, setApiData] = useState(null);
-  const [apiDataError, setApiDataError] = useState(null);
-
+  
+  const [filter, setFilter] = useState(null);
+  const {data: apiData , error: apiDataError} = useQuery({
+    queryKey: ['search',filter],
+    queryFn: ()=> filter.searchOption==='shows'? searchForShows(filter.q):searchForPeople(filter.q),
+    enabled:!!filter,
+    refetchOnWindowFocus: false
+  })
+  
   const onSearch = async ({ q, searchOption }) => {
-    try {
-      setApiDataError(null);
+    setFilter({q, searchOption})
 
-      let result;
-      if (searchOption === 'shows') {
-        result = await searchForShows(q);
-        
-      } else {
-        result = await searchForPeople(q);
-        
-      }
-      setApiData(result);
-    } catch (error) {
-      setApiDataError(error);
-    }
-  };
 
   const renderApiData = () => {
     if (apiDataError) {
@@ -50,5 +43,6 @@ const Home = () => {
     </div>
   );
 };
+}
 
 export default Home;
