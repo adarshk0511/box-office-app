@@ -19,7 +19,7 @@ const Home = () => {
   const onSearch = async ({ q, searchOption }) => {
     setFilter({q, searchOption})
 
-
+  };
   const renderApiData = () => {
     if (apiDataError) {
       return <div>Error occured: {apiDataError.message}</div>;
@@ -43,6 +43,6 @@ const Home = () => {
     </div>
   );
 };
-}
+
 
 export default Home;
