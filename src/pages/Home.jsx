@@ -1,14 +1,22 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useState, useReducer } from 'react';
 import { searchForShows, searchForPeople } from '../api/tvmaze';
 import SearchForm from '../components/SearchForm';
 import ShowGrid from '../components/shows/ShowGrid';
 import ActorsGrid from '../components/actors/ActorsGrid';
 
+const reducerFn = () => {
+
+}
+
 const Home = () => {
   
   const [filter, setFilter] = useState(null);
+
+  const [counter, dispatch] = useQuery(reducerFn, 0);
+
+
   const {data: apiData , error: apiDataError} = useQuery({
     queryKey: ['search',filter],
     queryFn: ()=> filter.searchOption==='shows'? searchForShows(filter.q):searchForPeople(filter.q),
