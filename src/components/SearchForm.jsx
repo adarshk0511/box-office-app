@@ -24,7 +24,7 @@ const SearchForm = ({onSearch}) => {
     }
     
     return (
-        <><form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit}>
             <input type="text" value={searchStr} onChange={onSearchInputChange} />
             <label>
                 Shows
@@ -45,7 +45,7 @@ const SearchForm = ({onSearch}) => {
                     onChange={onRadioChange} />
             </label>
             <button type="submit">Search !!</button>
-        </form></>
+        </form>
     );
     
 };

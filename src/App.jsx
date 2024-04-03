@@ -17,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/starred" element={<Starred />} />
         </Route>
+        
 
         <Route path="/show/:showId" element={ <Show/>} />
 
