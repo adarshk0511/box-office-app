@@ -5,7 +5,9 @@ import { searchForShows, searchForPeople } from '../api/tvmaze';
 import SearchForm from '../components/SearchForm';
 import ShowGrid from '../components/shows/ShowGrid';
 import ActorsGrid from '../components/actors/ActorsGrid';
-
+import styled , {css} from 'styled-components';
+ 
+const Button = styled.button``
 
 
 const Home = () => {
